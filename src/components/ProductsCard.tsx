@@ -4,7 +4,7 @@ import { TMark } from '@/types/mark.types';
 
 const ProductsCard = ( {products} :{products:TMark}) => {
 // number turns in bengali
-const enToBn = (num) =>
+const enToBn = (num : number) =>
   Number(num).toLocaleString('bn-BD', { useGrouping: false });
 
     // {plansdata}: {plansdata: TApp}
