@@ -11,7 +11,8 @@ import {TNavLink} from '@/types/nav.types'
 
 const Navber = async() => {
     // const res = await fetch( "https://api.abcz.workers.dev/api/bazardor/categories")
-    const res = await fetch( "https://api.api-store.workers.dev/api/bazardor/categories")
+    // const res = await fetch( "https://api.api-store.workers.dev/api/bazardor/categories")
+     const res = await fetch( "https://openapi.programming-hero.com/api/bazardor/categories")
     const navData = await res.json();
     console.log(navData, 'navdata')
     return (

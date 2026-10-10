@@ -7,7 +7,8 @@ import "react-marquee-text/dist/styles.css"
 
 const Marquee = async() => {
     // const res= await fetch("https://api.abcz.workers.dev/api/bazardor/products",{
-    const res= await fetch("https://api.api-store.workers.dev/api/bazardor/products",{
+    // const res= await fetch("https://api.api-store.workers.dev/api/bazardor/products",{
+     const res= await fetch("https://openapi.programming-hero.com/api/bazardor/products",{
          cache: "no-store" 
     })
     const allMarData = await res.json();
