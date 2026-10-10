@@ -27,7 +27,7 @@ const enToBn = (num : number) =>
     return (
         <div className='container mx-auto' >
             <div className='flex gap-2 mt-6  '>
-               <span className='bg-green-600 w-5 h-5'><BiSolidUpArrow />    </span>
+               <span className='bg-red-600 w-5 h-5'><BiSolidUpArrow />    </span>
             <h2 className='font-bold text-2xl'>আজ দাম বেড়েছে   </h2>
             </div>
             

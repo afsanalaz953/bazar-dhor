@@ -28,7 +28,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <Navber />
         <Marquee />
-        {children}
+        <main className=" flex-1">
+           {children}
+        </main>
+        
         <Footer />
         
         </body>

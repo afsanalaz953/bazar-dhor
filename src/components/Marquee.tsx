@@ -6,7 +6,8 @@ import MarqueeText from "react-marquee-text"
 import "react-marquee-text/dist/styles.css"
 
 const Marquee = async() => {
-    const res= await fetch("https://api.abcz.workers.dev/api/bazardor/products",{
+    // const res= await fetch("https://api.abcz.workers.dev/api/bazardor/products",{
+    const res= await fetch("https://api.api-store.workers.dev/api/bazardor/products",{
          cache: "no-store" 
     })
     const allMarData = await res.json();
@@ -16,7 +17,7 @@ const Marquee = async() => {
         <div className='bg-white'>
             <div className="divider"></div>
             <MarqueeText duration = {10}>
-            {marData.map((mark: TMark) => <Link key={mark.id} href={mark.slug}>
+            {marData.map((mark: TMark) => <Link key={mark.id} href={`/products/${mark.slug}`}>
             <div className='flex gap-2 ml-4'>
              <span>{mark.categoryIcon}</span>
              <span>{mark.nameBn}</span>
