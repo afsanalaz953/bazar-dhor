@@ -1,6 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+
 
 // ১. বাজারের ডেটার টাইপ
 interface MarketType {
@@ -84,13 +84,13 @@ const SingleProductPage = async ({ params }: PageProps) => {
 
   return (
     <div className="p-6 container mx-auto">
-      <div className=' w-full bg-white rounded shadow'>
+      <div className=' w-full bg-white rounded shadow flex justify-between'>
         {/* 1st div */}
-        <div className='flex gap-2 div1'>
+        <div className='flex gap-2 div1 m-4'>
               <div className='bg-slate-100 w-15 h-15 m-4 rounded flex items-center justify-center '>
      <span className='m-0'> {product.categoryIcon}</span>
     </div>
-        <div className='div2 p-4'>
+        <div className='div2 p-4 px-4'>
           <h1 className="text-3xl font-bold">{product.nameBn}</h1>
           <p>প্রতি কেজি · {product.categoryNameBn}</p>
           <p>
@@ -99,12 +99,21 @@ const SingleProductPage = async ({ params }: PageProps) => {
           </p>
         </div>
         </div>
-     
+     {/* 2nd div */}
+     <div className='div2 flex flex-col bg-slate-100 border-0 shadow rounded-lg m-8 p-6'>
+      <span>আজকের দাম</span>
+      <span className='font-bold text-2xl'> {product.today.toLocaleString('bn-BD')} </span>
+      <span>টাকা / কেজি</span>
+      {/* <span className=''> {product.change.pct.toLocaleString('bn-BD')}%</span> */}
+      <span className= {`bg-slate-100 btn rounded-2xl ${product.change.dir === 'down' ? 'text-red-600' : 'text-green-600' }`}>
+              {product.change.dir === 'down' ? '▼' : '▲'} {(product.change.pct.toLocaleString('bn-BD'))}%</span>
+
+     </div>
       </div>
 
       {/* 2nd div */}
       <div className=' mt-4 p-2 bg-white rounded'>
-        <h2 className="text-xl font-semibold mb-2">দামের সারসংক্ষেপ</h2>
+        <h2 className="text-2xl font-bold my-4">দামের সারসংক্ষেপ</h2>
         
         <div className='grid grid-cols-3 gap-4 rounded p-2'>
           
@@ -113,7 +122,7 @@ const SingleProductPage = async ({ params }: PageProps) => {
             <span className="text-gray-600 font-medium">সর্বনিম্ন দাম</span>
             {/* lowestMarket null হতে পারে, তাই অপশনাল চেইনিং (?.) ব্যবহার করা হয়েছে */}
             <span className="text-2xl font-bold text-green-600">
-              {lowestMarket?.min} টাকা
+              {lowestMarket?.min.toLocaleString('bn-BD')} টাকা
             </span>
             <span className="text-sm text-gray-500">বাজার: {lowestMarket?.market}</span>
           </div>
@@ -122,7 +131,7 @@ const SingleProductPage = async ({ params }: PageProps) => {
           <div className='flex flex-col gap-2 border-0 shadow p-4 rounded-lg'>
             <span className="text-gray-600 font-medium">সর্বোচ্চ দাম</span>
             <span className="text-2xl font-bold text-red-600">
-              {highestMarket?.max} টাকা
+              {highestMarket?.max.toLocaleString('bn-BD')} টাকা
             </span>
             <span className="text-sm text-gray-500">বাজার: {highestMarket?.market}</span>
           </div>
@@ -131,7 +140,8 @@ const SingleProductPage = async ({ params }: PageProps) => {
           <div className='flex flex-col gap-2 border-0 shadow p-4 rounded-lg'>
             <span className="text-gray-600 font-medium">গড় দাম</span>
             <span className="text-2xl font-bold text-blue-600">
-              {averagePrice.toFixed(0)} টাকা
+              {/* {averagePrice.toLocaleString('bn-BD')} টাকা */}
+             {averagePrice.toLocaleString('bn-BD', { maximumFractionDigits: 0 })}  টাকা
             </span>
             <span className="text-sm text-gray-500">সব বাজারের গড়</span>
           </div>
@@ -139,7 +149,7 @@ const SingleProductPage = async ({ params }: PageProps) => {
         </div>
         {/* বাজারভিত্তিক আজকের দাম */}
         <div>
-          <h2>বাজারভিত্তিক আজকের দাম</h2>
+          <h2 className='font-bold text-2xl my-8'>বাজারভিত্তিক আজকের দাম</h2>
          {/* আপনার JSX এর ভেতরে যেখানে টেবিলটি বসাতে চান, সেখানে এটি বসান */}
 <div className="overflow-x-auto mt-6 border rounded-lg">
   <table className="table w-full">
@@ -147,11 +157,11 @@ const SingleProductPage = async ({ params }: PageProps) => {
     <thead>
       <tr>
       
-        <th >বাজারের নাম</th>
-        <th>বিভাগ</th>
-        <th>সর্বনিম্ন দাম</th>
-        <th>সর্বোচ্চ দাম</th>
-        <th>গড়</th>
+        <th className='font-bold text-xl'>বাজারের নাম</th>
+        <th className='font-bold text-xl'>বিভাগ</th>
+        <th className='font-bold text-xl' >সর্বনিম্ন দাম</th>
+        <th  className='font-bold text-xl'>সর্বোচ্চ দাম</th>
+        <th  className='font-bold text-xl'>গড়</th>
       </tr>
     </thead>
     
@@ -162,10 +172,10 @@ const SingleProductPage = async ({ params }: PageProps) => {
           {/* <th>{index + 1}</th> */}
           <td>{newMarket.market}</td>
           <td>{newMarket.division}</td>
-          <td className="text-green-600 font-semibold">{newMarket.min} টাকা</td>
-          <td className="text-red-600 font-semibold">{newMarket.max} টাকা</td>
+          <td className="text-green-600 font-semibold">{newMarket.min.toLocaleString('bn-BD')} টাকা</td>
+          <td className="text-red-600 font-semibold">{newMarket.max.toLocaleString('bn-BD')} টাকা</td>
          <td className="text-blue-600 font-semibold">
-            {((newMarket.min + newMarket.max) / 2).toFixed(0)} টাকা
+            {((newMarket.min + newMarket.max) / 2).toLocaleString('bn-BD')} টাকা
           </td>
         </tr>
       ))}
