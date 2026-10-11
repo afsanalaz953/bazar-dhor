@@ -17,7 +17,7 @@ const Navber = async() => {
     console.log(navData, 'navdata')
     return (
         <div className='flex gap-15 justify-start container mx-auto 
-          p-4 mt-4 bg-white'>
+          p-4 mt-4 bg-white border-0 shadow'>
             {navData.map((navLink:TNavLink) => <Link key={navLink.id} href={`/category/${navLink.slug}`}>
             <div className='flex gap-2'>
              <span>{navLink.icon}</span>

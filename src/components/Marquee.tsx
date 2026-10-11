@@ -15,7 +15,7 @@ const Marquee = async() => {
     const marData = allMarData.slice(0,10)
     console.log (marData, 'Markdata')
     return (
-        <div className='bg-white'>
+        <div className='bg-white border-0 shadow '>
             <div className="divider"></div>
             <MarqueeText duration = {10}>
             {marData.map((mark: TMark) => <Link key={mark.id} href={`/products/${mark.slug}`}>
@@ -31,6 +31,7 @@ const Marquee = async() => {
             
             </Link>)} 
             </MarqueeText>
+             <div className="divider"></div>
         </div>
     );
 };
