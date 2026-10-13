@@ -3,70 +3,93 @@ import React from 'react';
 import Link from "next/link";
 // import { useForm } from "react-hook-form";
 import {authClient} from "@/lib/auth-client";
-import { FaArrowLeft, FaGithub, FaRegEyeSlash } from "react-icons/fa";
-import { useState } from 'react';
+// import { FaArrowLeft, FaGithub, FaRegEyeSlash } from "react-icons/fa";
+
 import { FcGoogle } from 'react-icons/fc';
-
-
-
+import { redirect } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 
 const SignupPage = () => {
+const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+e.preventDefault();
 
+const formData = new FormData(e.target)
+const user = Object.fromEntries(formData.entries()) as {name:string, email:string, password: string, 
+  confirmPassword: string,};
+console.log(user)
 
-//  const handleGoogleSignin = async () => {
-// const data = await authClient.signIn.social({
-//     provider: "google",
-//   });
+  // পাসওয়ার্ড মিলছে কিনা চেক
+    if (user.password !== user.confirmPassword) {
+      alert("পাসওয়ার্ড দুটি মিলছে না");
+      return;
+    }
+
+ const handleGoogleSignup = async () => {
+const data = await authClient.signUp.social({
+    provider: "google",
+  });
+console.log(data, "googledata");
+}
+
+// const handleLoginFunc = async (data) => {
 // console.log(data, "data");
-// }
 
-const handleLoginFunc = async (data) => {
-console.log(data, "data");
-
-const {data:res, error} = await authClient.signIn.email({
-    email: data.email, // required
-    password: data.password, // required
-    rememberMe: true,
-    callbackURL: "/",   
+const {data, error} = await authClient.signUp.email({
+   ...user,
+ callbackURL: "/login",
 });
 
 console.log(data, "data");
-// };
 
-console.log (res, error);
+
+console.log (error, 'error');
 
 if (error) {
-    alert(error.message)
+ toast.error(error?.message as string)
 }
- if (res) {
-    alert("Signin Successful")
+ if (data) {
+  toast.success("Signup Successful")
+   
+    redirect("/login")
  } 
 };
 
     return (
-    <div className='bg-slate-200 container mx-auto '>
+    <div className=' container mx-auto '>
             
-        <div className='bg-white rounded-xl w-120 container mx-auto p-20 my-10 flex gap-4 flex-col justify-center items-center'>
-        <h1 className='font-bold text-3xl'> সাইন ইন  </h1>
-        <p>  বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।  </p>
-<fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 ">
+ <div className=' rounded-2xl w-120 container mx-auto p-20  flex gap-4 flex-col justify-center items-center'>
+       <div className='container w-full flex-col justify-center items-center '>
+         <h1 className='font-bold text-3xl text-center'> অ্যাকাউন্ট তৈরি করুন </h1>
+        <div className=' ml-0 w-full  text-lg whitespace-nowrap '> বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন। </div>
+       </div>
+        
+ <form onSubmit={onSubmit}  className='bg-white space-y-8 rounded-3xl '>
+
+<fieldset className="fieldset  bg-white border-base-300 rounded-box w-xs border p-8 ">
   {/* <legend className="fieldset-legend mt-4">ইমেইল  </legend> */}
 
-  <label className="label">ইমেইল </label>
-  <input type="email" className="input" placeholder="you@example.com" />
+   <label className="label font-bold">নাম </label>
+  <input type="text"  name='name' className="input w-full" placeholder="যেমন: রহিম উদ্দিন" />
 
-  <label className="label">  পাসওয়ার্ড </label>
-  <input type="password" className="input" placeholder="কমপক্ষে ৮ অক্ষর  " />
+  <label className="label font-bold">ইমেইল </label>
+  <input type="email" name='email' className="input w-full" placeholder="you@example.com" />
 
-  <button className="btn font-bold mt-4 bg-green-500"> সাইন ইন </button>
+  <label className="label font-bold">  পাসওয়ার্ড </label>
+  <input type="password" name='password' className="input w-full" placeholder="কমপক্ষে ৮ অক্ষর  " />
+
+  <label className="label font-bold">  পাসওয়ার্ড নিশ্চিত করুন </label>
+  <input type="password" name='confirmPassword' className="input w-full" placeholder="আবার লিখুন  " />
+
+  <button className="btn font-bold mt-4 bg-green-500"> অ্যাকাউন্ট তৈরি করুন </button>
 <div className="divider text-sm text-gray-400"> অথবা  </div>
-<div className='social flex gap-2'>
+<div className='social flex gap-3'>
 <fieldset className="fiedset flex items-center gap-2">
  <button
-    type="button"
-    // onClick={handleGoogleSignin}
-    className="flex border-2 shadow items-center justify-center gap-2 w-full font-bold text-black text-lg cursor-pointer"
+    type="submit"
+    onClick={handleGoogleSignup}
+
+    className="flex border-0 shadow-lg items-center justify-center p-2 gap-2 w-50 text-sm cursor-pointer"
   >
     <FcGoogle size={22} />
     Google দিয়ে চালিয়ে যান
@@ -77,24 +100,24 @@ if (error) {
  <button
     type="button"
     // onClick={handleGoogleSignin}
-    className="flex border-2 shadow items-center justify-center gap-2 w-full font-bold text-black text-lg cursor-pointer"
+    className="flex border-0 shadow-lg items-center justify-center gap-2 w-50 p-2  text-sm cursor-pointer"
   >
     <FaGithub size={22}/>
 
     GitHub দিয়ে চালিয়ে যান
   </button>
 </fieldset>
-<div className='flex gap-2'>
-    <span><FaArrowLeft />   </span>
 
 </div>
+<div className='flex gap-1 my-3 justify-center items-center'>
+<span className='text-lg '>  অ্যাকাউন্ট আছে? </span>
+<button className='text-sm text-green-600 font-bold'><Link href= "/register"> সাইন ইন করুন</Link></button>
 
 </div>
-
-<p className='text-sm'> অ্যাকাউন্ট নেই?  </p>
-<span className='text-sm text-green-600 font-bold'><Link href= "/register"> সাইন আপ করুন</Link></span>
 
 </fieldset>
+</form>
+</div>
 
 
         {/* <form onSubmit={handleSubmit(handleLoginFunc)}>
@@ -127,11 +150,10 @@ if (error) {
 <p className='text-sm'> Donot have an account</p>
 <span className='text-sm text-green-600 font-bold'><Link href= "/register"> Register </Link></span>
                  </form> */}
-        </div>  
-<div>
- <span>← হোম পেজে ফিরে যান</span>
-</div>     
-      
+                
+<div className='flex justify-center items-center mb-10 mt-0'>
+ <button>← হোম পেজে ফিরে যান</button>
+</div>
         </div>  
     );
 };

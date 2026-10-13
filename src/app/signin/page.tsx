@@ -4,14 +4,42 @@ import Link from "next/link";
 // import { useForm } from "react-hook-form";
 import {authClient} from "@/lib/auth-client";
 import { FaArrowLeft, FaGithub, FaRegEyeSlash } from "react-icons/fa";
-import { useState } from 'react';
+
 import { FcGoogle } from 'react-icons/fc';
+import { redirect } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 
 
 
 
 const SigninPage = () => {
+const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+e.preventDefault();
+
+const formData = new FormData(e.target)
+const user = Object.fromEntries(formData.entries()) as {email:string, password: string};
+console.log(user, 'user')
+
+const {data, error} = await authClient.signIn.email({
+   ...user,
+ callbackURL: "/",
+});
+
+console.log(data, "logindata");
+
+
+console.log (error, 'error');
+
+if (error) {
+  toast.error(error?.message as string)
+    
+}
+ if (data) {
+  toast.success("সাইন ইন সফল হয়েছে")
+    
+   
+ } 
 
 
 //  const handleGoogleSignin = async () => {
@@ -21,28 +49,8 @@ const SigninPage = () => {
 // console.log(data, "data");
 // }
 
-const handleLoginFunc = async (data) => {
-console.log(data, "data");
 
-const {data:res, error} = await authClient.signIn.email({
-    email: data.email, // required
-    password: data.password, // required
-    rememberMe: true,
-    callbackURL: "/",   
-});
-
-console.log(data, "data");
-// };
-
-console.log (res, error);
-
-if (error) {
-    alert(error.message)
 }
- if (res) {
-    alert("Signin Successful")
- } 
-};
 
     return (
     <div className=' container mx-auto '>
@@ -53,18 +61,19 @@ if (error) {
         <div className=' ml-0 w-full  text-sm whitespace-nowrap  '>  বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।  </div>
        </div>
         
- <form  className='bg-white  rounded-3xl '>
+ <form onSubmit={onSubmit}  className='bg-white  rounded-3xl '>
 
 <fieldset className="fieldset  bg-white border-base-300 rounded-box w-xs border p-8 ">
   {/* <legend className="fieldset-legend mt-4">ইমেইল  </legend> */}
 
   <label className="label">ইমেইল </label>
-  <input type="email" className="input w-full" placeholder="you@example.com" />
+  <input type="email" name='email'   className="input w-full" placeholder="you@example.com" />
 
   <label className="label">  পাসওয়ার্ড </label>
-  <input type="password" className="input w-full" placeholder="কমপক্ষে ৮ অক্ষর  " />
+  <input type="password" name='password'   className="input w-full" placeholder="কমপক্ষে ৮ অক্ষর  " />
 
-  <button className="btn font-bold mt-4 bg-green-500"> সাইন ইন </button>
+  <button type='submit' className="btn font-bold mt-4 bg-green-500"> সাইন ইন </button>
+
 <div className="divider text-sm text-gray-400"> অথবা  </div>
 <div className='social flex gap-3'>
 <fieldset className="fiedset flex items-center gap-2">
@@ -93,7 +102,7 @@ if (error) {
 </div>
 <div className='flex gap-1 my-3 justify-center items-center'>
 <span className='text-lg '> অ্যাকাউন্ট নেই?  </span>
-<button className='text-sm text-green-600 font-bold'><Link href= "/register"> সাইন আপ করুন</Link></button>
+<button className='text-sm text-green-600 font-bold'><Link href= "/signup"> সাইন আপ করুন</Link></button>
 
 </div>
 

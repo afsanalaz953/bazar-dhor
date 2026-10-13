@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import UserInfo from '@/components/UserInfo';
 
 
 const Header = () => {
@@ -28,10 +29,7 @@ console.log(date)
 
             </div>
            
-            <div className='flex gap-3'>
-                <button className='btn rounded p-4 bg-[#05893E]'>সাইন ইন </button>
-                <button className='btn rounded p-4 bg-[#05893E]'>সাইন আপ</button>
-            </div>
+           <UserInfo />
             
         </div>
     );

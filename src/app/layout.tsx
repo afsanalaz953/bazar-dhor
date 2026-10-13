@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Navber from "@/components/Navber";
 import Marquee from "@/components/Marquee";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const notoSerifBengali = Noto_Serif_Bengali({
 
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         
         <Footer />
-        
+         <Toaster />
         </body>
     </html>
   );
