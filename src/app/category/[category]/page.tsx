@@ -28,7 +28,7 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
 
   return (
     <div className="bg-[#F0F5F0]">
-      <div className="divider"></div>
+      {/* <div className="divider"></div> */}
 
       <div className="container mx-auto">
         {/* header */}
@@ -59,7 +59,7 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
             মোট {sortedData.length.toLocaleString("bn-BD")} টি পণ্য দেখানো হচ্ছে
           </h2>
 
-          <div className="grid grid-cols-3 gap-4 my-6">
+          <div className="grid lg:grid-cols-3  gap-4 my-6">
             {sortedData.map((cat, id) => (
               <div key={id} className="card bg-base-100 shadow-sm">
                 <div className="card-body">

@@ -84,7 +84,7 @@ const SingleProductPage = async ({ params }: PageProps) => {
 
   return (
     <div className="p-6 container mx-auto">
-      <div className=' w-full bg-white rounded shadow flex justify-between'>
+      <div className=' w-full bg-white rounded shadow lg:flex justify-between '>
         {/* 1st div */}
         <div className='flex gap-2 div1 m-4'>
               <div className='bg-slate-100 w-15 h-15 m-4 rounded flex items-center justify-center '>
@@ -100,7 +100,7 @@ const SingleProductPage = async ({ params }: PageProps) => {
         </div>
         </div>
      {/* 2nd div */}
-     <div className='div2 flex flex-col bg-slate-100 border-0 shadow rounded-lg m-8 p-6'>
+     <div className='div2 flex flex-col sm:w-40 bg-slate-100 border-0 shadow rounded-lg m-8 p-6'>
       <span>আজকের দাম</span>
       <span className='font-bold text-2xl'> {product.today.toLocaleString('bn-BD')} </span>
       <span>টাকা / কেজি</span>
@@ -115,10 +115,10 @@ const SingleProductPage = async ({ params }: PageProps) => {
       <div className=' mt-4 p-2 bg-white rounded'>
         <h2 className="text-2xl font-bold my-4">দামের সারসংক্ষেপ</h2>
         
-        <div className='grid grid-cols-3 gap-4 rounded p-2'>
+        <div className='grid lg:grid-cols-3 sm:grid-cols-1 gap-4 rounded p-2'>
           
           {/* 1. সর্বনিম্ন দাম */}
-          <div className='flex flex-col gap-2 border-0 shadow p-4 rounded-lg'>
+          <div className='flex flex-col gap-2 border-0 shadow p-4 rounded-lg sm:text-center'>
             <span className="text-gray-600 font-medium">সর্বনিম্ন দাম</span>
             {/* lowestMarket null হতে পারে, তাই অপশনাল চেইনিং (?.) ব্যবহার করা হয়েছে */}
             <span className="text-2xl font-bold text-green-600">

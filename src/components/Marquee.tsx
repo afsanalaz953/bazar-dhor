@@ -32,7 +32,7 @@ const Marquee = async() => {
             
             </Link>)} 
             </MarqueeText>
-             <div className="divider"></div>
+             {/* <div className="divider"></div> */}
         </div>
     );
 };

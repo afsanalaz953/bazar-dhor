@@ -13,7 +13,7 @@ const res = await fetch( "https://api.abcz.workers.dev/api/bazardor/products")
         <div className='container mx-auto'>
             <h2 className='text-3xl font-bold'> সব পণ্য </h2>
             <p className='font-bold'> মোট  {allProductsData.length.toLocaleString('bn-BD')} টি পণ্য দেখানো হচ্ছে </p>
-            <div className='grid grid-cols-3 gap-4 my-6'>
+            <div className='grid lg:grid-cols-3 sm:grid-cols-2 gap-4 my-6'>
              {allProductsData.map((products: TMark) => (
   <Link key={products.id} href={`/products/${products.slug}`}>
     <ProductsCard products={products} />

@@ -33,7 +33,7 @@ const enToBn = (num : number) =>
             <h2 className='font-bold text-2xl'>আজ দাম বেড়েছে   </h2>
             </div>
             
-            <div className='grid grid-cols-3 gap-4 my-6'>
+            <div className='grid lg:grid-cols-3 gap-4 my-6'>
             {
                 topUpProducts.map((upProducts: TMark) => <Link  href={`/products/${upProducts.slug}`}  key={upProducts.id}>
                    

@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+Project name: বাজার দর
+Short description:  বাজার দর is a modern, web-based market price tracking application that allows users to view and log the current market prices of various essential items. It enables users to see the most recent and last recorded prices, and easily understand how much prices have increased or decreased over time. With visual charts, historical trends, and a clean interface, it helps consumers make informed purchasing decisions and stay updated on daily market fluctuations. Additional features include price comparison across different markets, price alerts, and category-wise price summaries.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Technologies used :
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+=> Next.js — React-based full-stack framework for building the application
+=>Tailwind CSS — Utility-first CSS framework for styling the user interface
+=> Vercel — Hosting and deployment platform
+=> Better Auth
+=> Mongo Db
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Key Features of বাজার দর:
 
-## Learn More
+Daily Market Price Logging — Easily record current prices of essential items (rice, oil, vegetables, fish, meat, etc.) with date and market information.
 
-To learn more about Next.js, take a look at the following resources:
+Latest & Last Price View — Instantly view the most recent price and previous recorded price for every item.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Price Increase/Decrease Indicator — Automatically calculate and display how much the price has risen or fallen (amount and percentage).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Per-Item Price Trend Charts — Visualize price history over time with clean line and bar charts to spot upward/downward trends.
 
-## Deploy on Vercel
+GitHub-Style Price Heatmap Calendar — A 365-day heatmap showing daily price change intensity, making volatility and patterns easy to see at a glance.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Market-wise Price Comparison — Compare the same item across multiple markets or vendors to find the best price.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Editable Watchlist / Favorite Items — Add or remove items from a personal watchlist to track only what matters most.
+
+Built-In Item Library + Custom Items — Search, filter, and select from a categorized item library, or add custom/local items as needed.
+
+Category-wise Browsing & Search — Browse by category (grocery, vegetables, fish, meat, etc.) and quickly search for any item.
+
+Price Alerts & Notifications — Set alerts for specific items and get notified when prices cross a chosen threshold.
+
+Responsive Dashboard — Clean, mobile-friendly interface for quick price entry and review on any device.
+
+Reports & Data Export — Generate summary reports and export price history for personal or research use.
+
+
+Live Link:  https://bazar-dor-five-nu.vercel.app
