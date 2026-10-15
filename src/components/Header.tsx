@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import UserInfo from '@/components/UserInfo';
+import Link from 'next/link';
 
 
 const Header = () => {
@@ -23,7 +24,11 @@ console.log(date)
 />
               </div>
               <div className=' '>
-               <p className='font-bold text-2xl'>বাজার দর</p> 
+
+                <Link href={'/'}>
+                    <p className='font-bold text-2xl'>বাজার দর</p>
+                </Link>
+               
                <span>{date}</span>
               </div>
 

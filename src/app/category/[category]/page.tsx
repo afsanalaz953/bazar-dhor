@@ -2,6 +2,7 @@ import { toBnUnit } from "@/components/StringBn";
 import { TMark } from "@/types/mark.types";
 import Search from "@/components/Search";
 import { Suspense } from "react";
+import Link from "next/link";
 
 type Props = {
   params: { category: string };
@@ -61,7 +62,7 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
 
           <div className="grid lg:grid-cols-3  gap-4 my-6">
             {sortedData.map((cat, id) => (
-              <div key={id} className="card bg-base-100 shadow-sm">
+              <Link href={`/products/${cat.slug}`}  key={id} className="card bg-base-100 shadow-sm">
                 <div className="card-body">
                   <div className="flex gap-2 justify-start">
                     <div className="bg-slate-100 w-6 h-6 rounded">
@@ -93,7 +94,7 @@ const CategoryPage = async ({ params, searchParams }: Props) => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
