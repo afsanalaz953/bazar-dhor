@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 const Banner = () => {
@@ -9,7 +10,7 @@ const Banner = () => {
                <h1 className='text-3xl font-bold'>আজকের বাজারের দাম এক নজরে</h1>
             <p>চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, 
                 <br />সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।</p>
-                <button className='btn p-3 bg-[#05893E]'>সব পণ্য দেখুন</button>
+                <Link href='/products' className='btn p-3 bg-[#05893E]'>সব পণ্য দেখুন</Link>
             </div>
             <div>
                    <Image

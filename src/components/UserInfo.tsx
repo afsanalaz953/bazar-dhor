@@ -2,7 +2,8 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
+import DropDownHover from "./DropDownHover";
 
 const UserInfo = () => {
 const { data: session,  } = authClient.useSession();
@@ -17,30 +18,39 @@ console.log (user, "session");
         <div>
             {user? ( <div className='flex gap-2 items-center'>
            
-    <div className=' avatar rounded-full flex gap-2'> 
-        <Image src={user?.image as string  }
-        // referrerPolicy='no-referrer'
-      alt=" author"
-      width={50}
-      height={50} 
-      />  
-      <h2>Hi,{user?.name}</h2> 
-                  </div>
-                  <div></div>
+ {/* <div className="avatar flex gap-3">
+    
+     <div className="w-10 rounded-full">
+    <Image
+    alt="Tailwind-CSS-Avatar-component" 
+    src= {user?.image as string}
+     width={10}
+      height={10} 
+    />
+  
+  </div>   
+           
+  </div> */}
+          
+         < DropDownHover />     
+          
+ 
+  
+      <h2>{user?.name}</h2> 
+                  </div>)
+                 
         
-                    <button className='btn rounded p-4 bg-[#05893E]' 
-                    onClick={async () => await authClient.signOut()} >
-                       সাইন আউট</button>
-   </div>)
+                    
+//    </div>)
    
                   :( <div className='flex gap-3'>
-                    <button className='btn rounded p-4 bg-[#05893E]'>
-                        <Link href = {"/signin"}>সাইন ইন </Link></button>
+                  
+                        <Link className='btn rounded p-4 bg-[#05893E]'  href = {"/signin"}>সাইন ইন </Link>
          
 
-                    <button className='btn rounded p-4 bg-[#05893E]'>
-                        <Link href ={"/signup"}>সাইন আপ</Link>
-                        </button>
+                    
+                        <Link  className='btn rounded p-4 bg-[#05893E]'   href ={"/signup"}>সাইন আপ</Link>
+                      
                     
                     </div>)}
 

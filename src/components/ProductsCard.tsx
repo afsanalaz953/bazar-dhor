@@ -1,4 +1,5 @@
 import { TMark } from '@/types/mark.types';
+import { toBnUnit } from './StringBn';
 
 
 
@@ -20,7 +21,7 @@ const enToBn = (num : number) =>
     </div>
     <div className="">
       <h2 className=" font-bold text-lg">{products.nameBn}  </h2>
-      <span className="">প্রতি {products.unit}</span>
+      <span className="">প্রতি {toBnUnit(products.unit)}</span>
     </div>
     </div>
     {/* intro */}

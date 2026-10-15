@@ -1,6 +1,8 @@
 import { TMark } from '@/types/mark.types';
 import React from 'react';
 import { BiSolidUpArrow } from 'react-icons/bi';
+import { toBnUnit } from './StringBn';
+import Link from 'next/link';
 
 const DamBaraSection = async() => {
 const res = await fetch( "https://api.abcz.workers.dev/api/bazardor/products")
@@ -33,7 +35,7 @@ const enToBn = (num : number) =>
             
             <div className='grid grid-cols-3 gap-4 my-6'>
             {
-                topUpProducts.map((upProducts: TMark) => <div key={upProducts.id}>
+                topUpProducts.map((upProducts: TMark) => <Link  href={`/products/${upProducts.slug}`}  key={upProducts.id}>
                    
                     <div className="card  bg-base-100 shadow-sm ">
   <div className="card-body">
@@ -45,7 +47,7 @@ const enToBn = (num : number) =>
     </div>
     <div className="">
       <h2 className=" font-bold text-lg">{upProducts.nameBn}  </h2>
-      <span className="">প্রতি {upProducts.unit}</span>
+      <span className="">প্রতি {toBnUnit(upProducts.unit)}</span>
     </div>
     </div>
     {/* intro */}
@@ -69,7 +71,7 @@ const enToBn = (num : number) =>
     
   </div>
 </div>
-                </div>
+                </Link>
             )}
             </div>
         </div>

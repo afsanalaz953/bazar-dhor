@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { TMark } from '@/types/mark.types';
 import MarqueeText from "react-marquee-text"
 import "react-marquee-text/dist/styles.css"
+import { toBnUnit } from './StringBn';
 
 const Marquee = async() => {
     // const res= await fetch("https://api.abcz.workers.dev/api/bazardor/products",{
@@ -23,9 +24,9 @@ const Marquee = async() => {
              <span>{mark.categoryIcon}</span>
              <span>{mark.nameBn}</span>
              <span>{mark.today}</span>
-             <span>টাকা/{mark.unit}</span>
+             <span>টাকা/{toBnUnit(mark.unit)}</span>
              <span className={mark.change.dir === 'down' ? 'text-red-600' : 'text-green-600'}>
-              {mark.change.dir === 'down' ? '▼' : '▲'} {mark.change.pct}%
+              {mark.change.dir === 'down' ? '▼' : '▲'} {mark.change.pct.toLocaleString('bn-BD')}%
              </span>
             </div>
             

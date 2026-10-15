@@ -3,10 +3,10 @@ import React from 'react';
 import Link from "next/link";
 // import { useForm } from "react-hook-form";
 import {authClient} from "@/lib/auth-client";
-import { FaArrowLeft, FaGithub, FaRegEyeSlash } from "react-icons/fa";
+import {  FaGithub } from "react-icons/fa";
 
 import { FcGoogle } from 'react-icons/fc';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 import toast from 'react-hot-toast';
 
 
@@ -38,19 +38,25 @@ if (error) {
  if (data) {
   toast.success("সাইন ইন সফল হয়েছে")
     
-   
  } 
 
-
-//  const handleGoogleSignin = async () => {
-// const data = await authClient.signIn.social({
-//     provider: "google",
-//   });
-// console.log(data, "data");
-// }
-
-
 }
+
+ const handleGoogleSignin = async () => {
+const data = await authClient.signIn.social({
+    provider: "google",
+  });
+console.log(data, "GOOGLEdata");
+}
+
+const handleGithubSignin = async () => {
+const data = await authClient.signIn.social({
+    provider: "github",
+  });
+console.log(data, "Githubdata");
+}
+
+
 
     return (
     <div className=' container mx-auto '>
@@ -79,7 +85,7 @@ if (error) {
 <fieldset className="fiedset flex items-center gap-2">
  <button
     type="button"
-    // onClick={handleGoogleSignin}
+    onClick={handleGoogleSignin}
     className="flex border-0 shadow-lg items-center justify-center p-2 gap-2 w-50 text-sm cursor-pointer"
   >
     <FcGoogle size={22} />
@@ -90,7 +96,7 @@ if (error) {
     <fieldset className="fiedset flex items-center gap-2">
  <button
     type="button"
-    // onClick={handleGoogleSignin}
+    onClick={handleGithubSignin}
     className="flex border-0 shadow-lg items-center justify-center gap-2 w-50 p-2  text-sm cursor-pointer"
   >
     <FaGithub size={22}/>

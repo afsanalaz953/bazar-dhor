@@ -31,10 +31,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Marquee />
         <main className=" flex-1  bg-[#F0F5F0]">
            {children}
+            <Toaster />
         </main>
         
         <Footer />
-         <Toaster />
+        
         </body>
     </html>
   );
